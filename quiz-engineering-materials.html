@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Engineering Materials Quiz</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="syllabus.css">
+
+<style>
+.quiz-box{
+    background:#0c0c0c;
+    padding:24px;
+    border-radius:14px;
+    max-width:750px;
+    margin:30px auto;
+    box-shadow:0 0 20px rgba(0,0,0,0.6);
+}
+.quiz-box h2{
+    text-align:center;
+    margin-bottom:10px;
+}
+.question{
+    margin:20px 0;
+}
+.question p{
+    margin-bottom:8px;
+    font-weight:600;
+}
+.quiz-box label{
+    display:block;
+    margin:6px 0;
+    cursor:pointer;
+}
+.quiz-box button{
+    display:block;
+    margin:25px auto 10px;
+    padding:12px 22px;
+    background:#2563eb;
+    color:#fff;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
+    cursor:pointer;
+}
+#result{
+    text-align:center;
+    font-size:18px;
+    margin-top:15px;
+    font-weight:600;
+}
+</style>
+</head>
+
+<body>
+<div class="wrapper">
+
+<div class="quiz-box">
+    <h2>Engineering Materials Quiz</h2>
+    <p style="text-align:center;color:#b0a090">ESC 105 • 15 MCQs</p>
+
+    <!-- Q1 -->
+    <div class="question">
+        <p>Q1. Number of atoms per unit cell in BCC is:</p>
+        <label><input type="radio" name="q1"> 1</label>
+        <label><input type="radio" name="q1" id="a1"> 2</label>
+        <label><input type="radio" name="q1"> 3</label>
+        <label><input type="radio" name="q1"> 4</label>
+    </div>
+
+    <!-- Q2 -->
+    <div class="question">
+        <p>Q2. Packing efficiency of FCC lattice ≈</p>
+        <label><input type="radio" name="q2"> 0.52</label>
+        <label><input type="radio" name="q2"> 0.68</label>
+        <label><input type="radio" name="q2" id="a2"> 0.74</label>
+        <label><input type="radio" name="q2"> 0.82</label>
+    </div>
+
+    <!-- Q3 -->
+    <div class="question">
+        <p>Q3. Which is NOT a point defect?</p>
+        <label><input type="radio" name="q3"> Vacancy</label>
+        <label><input type="radio" name="q3"> Interstitial</label>
+        <label><input type="radio" name="q3" id="a3"> Grain boundary</label>
+        <label><input type="radio" name="q3"> Substitutional</label>
+    </div>
+
+    <!-- Q4 -->
+    <div class="question">
+        <p>Q4. Dislocation is a:</p>
+        <label><input type="radio" name="q4"> Point defect</label>
+        <label><input type="radio" name="q4" id="a4"> Line defect</label>
+        <label><input type="radio" name="q4"> Surface defect</label>
+        <label><input type="radio" name="q4"> Volume defect</label>
+    </div>
+
+    <!-- Q5 -->
+    <div class="question">
+        <p>Q5. Frank-Read source generates:</p>
+        <label><input type="radio" name="q5"> Vacancies</label>
+        <label><input type="radio" name="q5" id="a5"> Dislocations</label>
+        <label><input type="radio" name="q5"> Grain boundaries</label>
+        <label><input type="radio" name="q5"> Cracks</label>
+    </div>
+
+    <!-- Q6 -->
+    <div class="question">
+        <p>Q6. Resolved shear stress ≥ critical resolved shear stress leads to:</p>
+        <label><input type="radio" name="q6"> Fracture</label>
+        <label><input type="radio" name="q6" id="a6"> Plastic deformation</label>
+        <label><input type="radio" name="q6"> Elastic deformation</label>
+        <label><input type="radio" name="q6"> Creep</label>
+    </div>
+
+    <!-- Q7 -->
+    <div class="question">
+        <p>Q7. Fine grain size improves:</p>
+        <label><input type="radio" name="q7"> Ductility only</label>
+        <label><input type="radio" name="q7" id="a7"> Strength & hardness</label>
+        <label><input type="radio" name="q7"> Toughness only</label>
+        <label><input type="radio" name="q7"> Electrical conductivity</label>
+    </div>
+
+    <!-- Q8 -->
+    <div class="question">
+        <p>Q8. Solid-solution strengthening is due to:</p>
+        <label><input type="radio" name="q8"> Grain growth</label>
+        <label><input type="radio" name="q8" id="a8"> Dislocation pinning</label>
+        <label><input type="radio" name="q8"> Vacancy elimination</label>
+        <label><input type="radio" name="q8"> Precipitate coarsening</label>
+    </div>
+
+    <!-- Q9 -->
+    <div class="question">
+        <p>Q9. Creep occurs at:</p>
+        <label><input type="radio" name="q9"> Low T, high stress</label>
+        <label><input type="radio" name="q9"> High T, low stress</label>
+        <label><input type="radio" name="q9" id="a9"> High T, any stress</label>
+        <label><input type="radio" name="q9"> Room temperature</label>
+    </div>
+
+    <!-- Q10 -->
+    <div class="question">
+        <p>Q10. Fatigue limit is shown by:</p>
+        <label><input type="radio" name="q10"> Aluminium</label>
+        <label><input type="radio" name="q10" id="a10"> Steel</label>
+        <label><input type="radio" name="q10"> Copper</label>
+        <label><input type="radio" name="q10"> Lead</label>
+    </div>
+
+    <!-- Q11 -->
+    <div class="question">
+        <p>Q11. Fick’s first law applies to:</p>
+        <label><input type="radio" name="q11"> Non-steady diffusion</label>
+        <label><input type="radio" name="q11" id="a11"> Steady-state diffusion</label>
+        <label><input type="radio" name="q11"> Thermal conduction</label>
+        <label><input type="radio" name="q11"> Dislocation climb</label>
+    </div>
+
+    <!-- Q12 -->
+    <div class="question">
+        <p>Q12. Carbon diffuses in γ-Fe via:</p>
+        <label><input type="radio" name="q12"> Vacancy mechanism</label>
+        <label><input type="radio" name="q12" id="a12"> Interstitial mechanism</label>
+        <label><input type="radio" name="q12"> Substitutional mechanism</label>
+        <label><input type="radio" name="q12"> Grain-boundary diffusion</label>
+    </div>
+
+    <!-- Q13 -->
+    <div class="question">
+        <p>Q13. Pearlite is a mixture of:</p>
+        <label><input type="radio" name="q13"> Austenite + Cementite</label>
+        <label><input type="radio" name="q13" id="a13"> Ferrite + Cementite</label>
+        <label><input type="radio" name="q13"> Austenite + Ferrite</label>
+        <label><input type="radio" name="q13"> Martensite + Ferrite</label>
+    </div>
+
+    <!-- Q14 -->
+    <div class="question">
+        <p>Q14. Which process increases surface hardness?</p>
+        <label><input type="radio" name="q14"> Annealing</label>
+        <label><input type="radio" name="q14"> Normalising</label>
+        <label><input type="radio" name="q14" id="a14"> Nitriding</label>
+        <label><input type="radio" name="q14"> Spheroidising</label>
+    </div>
+
+    <!-- Q15 -->
+    <div class="question">
+        <p>Q15. Example of a ceramic material:</p>
+        <label><input type="radio" name="q15"> Brass</label>
+        <label><input type="radio" name="q15"> PVC</label>
+        <label><input type="radio" name="q15" id="a15"> Alumina (Al₂O₃)</label>
+        <label><input type="radio" name="q15"> Mild steel</label>
+    </div>
+
+    <button onclick="checkQuiz()">Submit Quiz</button>
+    <div id="result"></div>
+</div>
+
+</div>
+
+<script>
+function checkQuiz(){
+    const answers = ["a1","a2","a3","a4","a5","a6","a7","a8","a9","a10","a11","a12","a13","a14","a15"];
+    let score = 0;
+    answers.forEach(id => {
+        if(document.getElementById(id).checked) score++;
+    });
+
+    const result = document.getElementById("result");
+    result.innerHTML = "Your Score: " + score + " / 15";
+    result.style.color = (score >= 12) ? "#22c55e" : (score >= 8) ? "#fbbf24" : "#ef4444";
+}
+</script>
+</body>
+
+</body>
+</html>

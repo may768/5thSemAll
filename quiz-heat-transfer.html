@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Heat Transfer Quiz</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="syllabus.css">
+
+<style>
+.quiz-box{
+    background:#0c0c0c;
+    padding:20px;
+    border-radius:12px;
+    max-width:700px;
+    margin:20px auto;
+}
+.quiz-box h2{ margin-bottom:10px; }
+.quiz-box button{
+    margin-top:15px;
+    padding:10px 16px;
+    background:#2563eb;
+    color:#fff;
+    border:none;
+    border-radius:8px;
+}
+</style>
+</head>
+
+<body>
+<div class="wrapper">
+
+<!--  QUIZ-BOX (15 Qs)  -->
+<div class="quiz-box">
+    <h2>Heat Transfer Quiz</h2>
+
+    <p><b>Q1.</b> Fourier’s law is related to:</p>
+    <input type="radio" name="q1"> Convection<br>
+    <input type="radio" name="q1" id="ans1"> Conduction<br>
+    <input type="radio" name="q1"> Radiation<br>
+
+    <p><b>Q2.</b> Unit of thermal conductivity is:</p>
+    <input type="radio" name="q2" id="ans2"> W/m·K<br>
+    <input type="radio" name="q2"> W/m²·K<br>
+    <input type="radio" name="q2"> J/kg·K<br>
+
+    <p><b>Q3.</b> Thermal conductivity of copper at room temp. (W/m·K) ≈</p>
+    <input type="radio" name="q3"> 1<br>
+    <input type="radio" name="q3" id="ans3"> 400<br>
+    <input type="radio" name="q3"> 1000<br>
+
+    <p><b>Q4.</b> Nusselt number is the ratio of</p>
+    <input type="radio" name="q4"> Inertia / Viscous forces<br>
+    <input type="radio" name="q4" id="ans4"> Convective / Conductive heat transfer<br>
+    <input type="radio" name="q4"> Buoyant / Viscous forces<br>
+
+    <p><b>Q5.</b> Critical radius of insulation for a pipe (r<sub>c</sub>) =</p>
+    <input type="radio" name="q5"> h/k<br>
+    <input type="radio" name="q5" id="ans5"> 2k/h<br>
+    <input type="radio" name="q5"> k/h<br>
+
+    <p><b>Q6.</b> Fin efficiency is defined as</p>
+    <input type="radio" name="q6"> Q<sub>with fin</sub> / Q<sub>without fin</sub><br>
+    <input type="radio" name="q6" id="ans6"> Q<sub>actual</sub> / Q<sub>max possible</sub><br>
+    <input type="radio" name="q6"> Q<sub>max</sub> / Q<sub>actual</sub><br>
+
+    <p><b>Q7.</b> Stefan–Boltzmann constant (W/m²·K⁴) ≈</p>
+    <input type="radio" name="q7"> 9.81<br>
+    <input type="radio" name="q7" id="ans7"> 5.67 × 10⁻⁸<br>
+    <input type="radio" name="q7"> 0.66<br>
+
+    <p><b>Q8.</b> Pool-boiling regime immediately after nucleate boiling is</p>
+    <input type="radio" name="q8"> Film boiling<br>
+    <input type="radio" name="q8" id="ans8"> Transition boiling<br>
+    <input type="radio" name="q8"> Partial nucleate<br>
+
+    <p><b>Q9.</b> LMTD is used while designing</p>
+    <input type="radio" name="q9"> Pumps<br>
+    <input type="radio" name="q9" id="ans9"> Heat exchangers<br>
+    <input type="radio" name="q9"> Compressors<br>
+
+    <p><b>Q10.</b> Effectiveness of a very-long parallel-flow heat exchanger tends to</p>
+    <input type="radio" name="q10"> 1<br>
+    <input type="radio" name="q10" id="ans10"> 0<br>
+    <input type="radio" name="q10"> ∞<br>
+
+    <p><b>Q11.</b> NTU stands for</p>
+    <input type="radio" name="q11"> Net Thermal Unit<br>
+    <input type="radio" name="q11" id="ans11"> Number of Transfer Units<br>
+    <input type="radio" name="q11"> Nominal Transfer Unit<br>
+
+    <p><b>Q12.</b> Baffles in a shell-and-tube exchanger are primarily used to</p>
+    <input type="radio" name="q12"> Support tubes only<br>
+    <input type="radio" name="q12" id="ans12"> Increase velocity & promote turbulence<br>
+    <input type="radio" name="q12"> Reduce pressure drop<br>
+
+    <p><b>Q13.</b> Fouling factor is accounted for by</p>
+    <input type="radio" name="q13"> Reducing flow rate<br>
+    <input type="radio" name="q13" id="ans13"> Adding extra heat-transfer area<br>
+    <input type="radio" name="q13"> Increasing temperature difference<br>
+
+    <p><b>Q14.</b> Boiling-point elevation in evaporators is caused by</p>
+    <input type="radio" name="q14"> Super-heating of vapour<br>
+    <input type="radio" name="q14" id="ans14"> Presence of dissolved impurities<br>
+    <input type="radio" name="q14"> Sub-cooling of liquor<br>
+
+    <p><b>Q15.</b> Radiation heat-transfer rate is proportional to</p>
+    <input type="radio" name="q15"> T<br>
+    <input type="radio" name="q15"> T²<br>
+    <input type="radio" name="q15" id="ans15"> T⁴<br>
+
+    <button onclick="checkQuiz()">Submit Quiz</button>
+    <p id="result"></p>
+</div>
+
+<!--  UPDATED MARKING SCRIPT  -->
+<script>
+function checkQuiz(){
+    const answers = ["ans1","ans2","ans3","ans4","ans5","ans6","ans7","ans8","ans9","ans10","ans11","ans12","ans13","ans14","ans15"];
+    let score = 0;
+    answers.forEach(id => {
+        if(document.getElementById(id).checked) score++;
+    });
+    document.getElementById("result").innerHTML = "Your Score: " + score + "/15";
+}
+</script>

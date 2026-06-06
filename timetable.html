@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Timetable</title>
+
+<style>
+:root{
+    --bg-main:#070707;
+    --bg-panel:#0c0c0c;
+    --bg-slot:#111111;
+    --border:#2a1a12;
+    --text-main:#f5f5f5;
+    --text-muted:#b0a090;
+    --heat-low:#fbbf24;
+    --heat-mid:#fb923c;
+    --heat-high:#ef4444;
+}
+
+*{ box-sizing:border-box; }
+
+body{
+    margin:0;
+    min-height:100vh;
+    background:
+        radial-gradient(circle at top right, rgba(255,120,0,0.14), transparent 45%),
+        radial-gradient(circle at bottom left, rgba(255,40,0,0.12), transparent 45%),
+        var(--bg-main);
+    font-family:"Inter","Segoe UI",sans-serif;
+    color:var(--text-main);
+}
+
+.wrapper{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    padding:24px;
+}
+
+.header{
+    text-align:center;
+    margin-bottom:26px;
+}
+
+.header h1{
+    font-size:30px;
+    font-weight:600;
+    letter-spacing:1.6px;
+    background:linear-gradient(90deg,var(--heat-low),var(--heat-mid),var(--heat-high));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.panel{
+    position:relative;
+    width:100%;
+    max-width:1400px;
+    background:linear-gradient(180deg,#0c0c0c,#080808);
+    border-radius:16px;
+    border:1px solid var(--border);
+    box-shadow:
+        inset 0 0 22px rgba(255,120,0,0.06),
+        0 22px 44px rgba(0,0,0,0.9);
+    overflow:hidden;
+}
+
+.panel::before{
+    content:"";
+    position:absolute;
+    inset:-2px;
+    border-radius:18px;
+    background:linear-gradient(
+        120deg,
+        rgba(255,140,0,0.25),
+        rgba(255,40,0,0.15),
+        rgba(255,140,0,0.25)
+    );
+    filter:blur(18px);
+    z-index:-1;
+}
+
+.table-wrap{
+    width:100%;
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    min-width:1000px;
+    border-collapse:collapse;
+}
+
+thead th{
+    padding:14px;
+    font-size:13px;
+    letter-spacing:0.7px;
+    color:var(--heat-low);
+    border:1px solid var(--border);
+    background:linear-gradient(180deg,#140a06,#0c0604);
+}
+
+tbody td{
+    padding:14px;
+    text-align:center;
+    font-size:13.5px;
+    border:1px solid var(--border);
+    background:var(--bg-slot);
+}
+
+.day{
+    text-align:left;
+    padding-left:18px;
+    font-weight:600;
+    color:var(--heat-mid);
+    background:linear-gradient(90deg,#120804,#0a0503);
+}
+
+.subject{ display:block; font-weight:500; }
+.faculty{ display:block; font-size:12px; color:var(--text-muted); margin-top:2px; }
+.free{ color:#6b5b4a; }
+
+.lab{
+    background:linear-gradient(135deg,rgba(255,120,0,0.25),rgba(255,40,0,0.35));
+    font-weight:600;
+    box-shadow: inset 0 0 20px rgba(255,80,0,0.45);
+}
+
+@media(max-width:768px){
+    .header h1{ font-size:24px; }
+    th, td{ font-size:12px; padding:12px; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<div class="header">
+    <h1>Timetable</h1>
+</div>
+
+<div class="panel">
+<div class="table-wrap">
+<table>
+
+<thead>
+<tr>
+    <th>Day</th>
+    <th>08–09</th>
+    <th>09–10</th>
+    <th>10–11</th>
+    <th>11–12</th>
+    <th>12–1</th>
+    <th>1–2</th>
+    <th>2–3</th>
+    <th>3–4</th>
+    <th>4–5</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td class="day">Monday</td>
+<td><span class="subject">HT Tutorial</span><span class="faculty">Jaspreet</span></td>
+<td><span class="subject">Managerial Economics</span><span class="faculty">HK</span></td>
+<td><span class="subject">POM</span><span class="faculty">HK</span></td>
+<td><span class="subject">CT–2</span><span class="faculty">MG</span></td>
+<td><span class="subject">POM</span><span class="faculty">HK</span></td>
+<td class="free">—</td>
+<td><span class="subject">SOM</span><span class="faculty">Vikas</span></td>
+<td><span class="subject">SOM</span><span class="faculty">Vikas</span></td>
+<td class="free">—</td>
+</tr>
+
+<tr>
+<td class="day">Tuesday</td>
+<td class="free">—</td>
+<td class="free">—</td>
+<td><span class="subject">Managerial Eco</span><span class="faculty">HK</span></td>
+<td><span class="subject">Managerial Eco</span><span class="faculty">HK</span></td>
+<td><span class="subject">Heat Transfer</span><span class="faculty">AT</span></td>
+<td class="free">—</td>
+<td><span class="subject">CT–2</span><span class="faculty">MG</span></td>
+<td><span class="subject">Engg. Mat (Tut.)</span><span class="faculty">SG</span></td>
+<td><span class="subject">Engg. Material</span><span class="faculty">SG</span></td>
+</tr>
+
+<tr>
+<td class="day">Wednesday</td>
+<td class="free">—</td>
+<td><span class="subject">Heat Transfer</span><span class="faculty">AT</span></td>
+<td colspan="4" class="lab">CT – Organic Lab<span class="faculty">MG, NK</span></td>
+<td class="free">—</td>
+<td><span class="subject">SOM</span><span class="faculty">Vikas</span></td>
+<td class="free">—</td>
+</tr>
+
+<tr>
+<td class="day">Thursday</td>
+<td class="free">—</td>
+<td><span class="subject">SOM</span><span class="faculty">Vikas</span></td>
+<td><span class="subject">Managerial Eco</span><span class="faculty">HK</span></td>
+<td><span class="subject">Engg. Materials</span><span class="faculty">SG</span></td>
+<td><span class="subject">Heat Transfer</span><span class="faculty">AT</span></td>
+<td class="free">—</td>
+<td colspan="3" class="lab">Process Equipment Design<span class="faculty">JS • DH-1</span></td>
+</tr>
+
+<tr>
+<td class="day">Friday</td>
+<td class="free">—</td>
+<td><span class="subject">POM Tutorial</span><span class="faculty">HK</span></td>
+<td><span class="subject">POM</span><span class="faculty">HK</span></td>
+<td><span class="subject">Engg. Materials</span><span class="faculty">SG</span></td>
+<td><span class="subject">CT–2</span><span class="faculty">MG</span></td>
+<td class="free">—</td>
+<td colspan="3" class="lab">Heat Transfer Lab<span class="faculty">RG, Girish</span></td>
+</tr>
+
+</tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+<script>
+const today = new Date().toLocaleString('en-us',{weekday:'long'});
+document.querySelectorAll('.day').forEach(d=>{
+    if(d.innerText === today){
+        d.style.boxShadow="inset 6px 0 0 #ef4444";
+        d.style.color="#fde047";
+    }
+});
+</script>
+
+</body>
+</html>
