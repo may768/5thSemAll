@@ -183,11 +183,7 @@ body{
     border:1px solid rgba(255,160,0,0.3);
 }
 
-.subject-tag.timetable {
-    background: rgba(45, 138, 110, 0.25);
-    color: #7dd3c0;
-    border: 1px solid rgba(45, 138, 110, 0.4);
-}
+
 
 .sem-title{
     text-align:center;
