@@ -3,478 +3,459 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weekly Timetable — B.E. with MBA III / L-4</title>
-    <style>
+    <title>TIME TABLE | B.E.W MBA III/L2 (Updated)</title>
+        <style>
         :root {
-            --bg-main: #070707;
-            --bg-panel: #0c0c0c;
-            --bg-slot: #111111;
-            --border: #2a1a12;
-            --text-main: #f5f5f5;
-            --text-muted: #b0a090;
-            --heat-low: #fbbf24;
-            --heat-mid: #fb923c;
-            --heat-high: #ef4444;
+            --primary-green: #2d5a27;
+            --header-bg: #1c3519;
+            --text-dark: #333333;
+            --border-color: #e0e0e0;
+            --bg-light: #fdfdfd;
+            --bg-alt: #f8fbf7;
+            --lunch-bg: #fafafa;
+            --lab-border: #4caf50;
+            --text-muted: #777777;
         }
 
-        * { box-sizing: border-box; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
         body {
-            margin: 0;
-            min-height: 100vh;
-            background:
-                radial-gradient(circle at top right, rgba(255, 120, 0, 0.14), transparent 45%),
-                radial-gradient(circle at bottom left, rgba(255, 40, 0, 0.12), transparent 45%),
-                var(--bg-main);
-            font-family: "Inter", "Segoe UI", sans-serif;
-            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f6f4;
+            padding: 12px;
+            color: var(--text-dark);
         }
 
-        .wrapper {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 24px;
+        .timetable-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--border-color);
+            width: 100%;
+            overflow-x: auto; /* Enables smooth horizontal scrolling on smaller screens */
+            -webkit-overflow-scrolling: touch;
         }
 
-        .header {
+        .main-header {
+            background-color: var(--header-bg);
+            color: #ffffff;
             text-align: center;
-            margin-bottom: 26px;
-        }
-
-        .header-label {
-            font-size: 12px;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 8px;
-        }
-
-        .header h1 {
-            font-size: 36px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            color: var(--heat-mid);
-            margin-bottom: 6px;
-        }
-
-        .header-subtitle {
+            padding: 14px;
             font-size: 18px;
-            color: var(--text-muted);
-            letter-spacing: 1px;
-        }
-
-        .header-badge {
-            display: inline-block;
-            margin-top: 12px;
-            padding: 6px 20px;
-            background: rgba(255, 120, 0, 0.1);
-            border: 1px solid var(--border);
-            border-radius: 50px;
-            font-size: 12px;
-            color: var(--heat-mid);
-            letter-spacing: 2px;
-        }
-
-        .panel {
-            position: relative;
-            width: 100%;
-            max-width: 1500px;
-            background: linear-gradient(180deg, #0c0c0c, #080808);
-            border-radius: 16px;
-            border: 1px solid var(--border);
-            box-shadow:
-                inset 0 0 22px rgba(255, 120, 0, 0.06),
-                0 22px 44px rgba(0, 0, 0, 0.9);
-            overflow: hidden;
-        }
-
-        .panel::before {
-            content: "";
-            position: absolute;
-            inset: -2px;
-            border-radius: 18px;
-            background: linear-gradient(
-                120deg,
-                rgba(255, 140, 0, 0.25),
-                rgba(255, 40, 0, 0.15),
-                rgba(255, 140, 0, 0.25)
-            );
-            filter: blur(18px);
-            z-index: -1;
-        }
-
-        .table-wrap {
-            width: 100%;
-            overflow-x: auto;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
         table {
             width: 100%;
-            min-width: 1100px;
             border-collapse: collapse;
+            table-layout: fixed;
+            min-width: 850px; /* Prevents columns from compressing past readable limits */
         }
 
-        thead th {
-            padding: 16px 12px;
-            font-size: 13px;
-            letter-spacing: 0.8px;
-            color: var(--heat-low);
-            border: 1px solid var(--border);
-            background: linear-gradient(180deg, #140a06, #0c0604);
-            text-transform: uppercase;
-        }
-
-        tbody td {
-            padding: 14px 10px;
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 10px 6px;
             text-align: center;
-            font-size: 13px;
-            border: 1px solid var(--border);
-            background: var(--bg-slot);
+            font-size: 12px;
             vertical-align: middle;
         }
 
-        .day {
-            text-align: left;
-            padding-left: 18px;
+        th {
+            background-color: var(--primary-green);
+            color: #ffffff;
             font-weight: 600;
-            color: var(--heat-mid);
-            background: linear-gradient(90deg, #120804, #0a0503);
-            font-size: 14px;
+            text-transform: uppercase;
+            font-size: 11px;
             letter-spacing: 0.5px;
+            height: 40px;
         }
 
-        .subject { display: block; font-weight: 500; line-height: 1.4; }
-        .faculty { display: block; font-size: 11px; color: var(--text-muted); margin-top: 3px; }
-        .free { color: #6b5b4a; font-style: italic; }
-
-        .lab {
-            background: linear-gradient(135deg, rgba(255, 120, 0, 0.25), rgba(255, 40, 0, 0.35));
-            font-weight: 600;
-            box-shadow: inset 0 0 20px rgba(255, 80, 0, 0.45);
+        .time-header {
+            width: 120px;
+            background-color: #ffffff;
+            color: var(--text-dark);
         }
 
-        .tutorial {
-            background: linear-gradient(135deg, rgba(251, 191, 36, 0.15), rgba(251, 146, 60, 0.2));
-            box-shadow: inset 0 0 15px rgba(251, 191, 36, 0.15);
+        .time-col {
+            font-weight: bold;
+            color: var(--text-dark);
+            background-color: #ffffff;
+            font-size: 11px;
         }
 
-        .lunch {
-            background: linear-gradient(135deg, rgba(52, 211, 153, 0.15), rgba(96, 165, 250, 0.15));
-            color: #34d399;
-            font-weight: 600;
-            letter-spacing: 3px;
-            font-size: 12px;
+        tr:nth-child(even) td:not(.time-col):not(.lunch-cell) {
+            background-color: var(--bg-alt);
         }
 
-        .faculty-key {
-            margin-top: 30px;
-            width: 100%;
-            max-width: 1500px;
-            background: linear-gradient(180deg, #0c0c0c, #080808);
-            border-radius: 16px;
-            border: 1px solid var(--border);
-            padding: 30px;
-            box-shadow:
-                inset 0 0 22px rgba(255, 120, 0, 0.06),
-                0 22px 44px rgba(0, 0, 0, 0.9);
+        tr:nth-child(odd) td:not(.time-col):not(.lunch-cell) {
+            background-color: var(--bg-light);
         }
 
-        .faculty-key h2 {
-            font-size: 20px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            color: var(--heat-mid);
-            margin-bottom: 20px;
+        .slot {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 48px; /* Tighter layout to perfectly match screenshot proportions */
         }
 
-        .faculty-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 12px;
+        .subject {
+            font-weight: 500;
+            color: #111111;
+            margin-bottom: 2px;
+            line-height: 1.2;
         }
 
-        .faculty-item {
-            padding: 12px 16px;
-            background: var(--bg-slot);
-            border-radius: 10px;
-            border: 1px solid var(--border);
-            border-left: 3px solid var(--heat-mid);
-        }
-
-        .faculty-name {
-            font-weight: 600;
-            color: var(--heat-low);
-            font-size: 13px;
-        }
-
-        .faculty-subject {
+        .faculty {
+            font-size: 10px;
             color: var(--text-muted);
-            font-size: 12px;
-            margin-left: 6px;
         }
 
-        .footer {
-            margin-top: 20px;
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 12px;
-            letter-spacing: 2px;
+        .lunch-row {
+            height: 38px;
         }
 
-        @media(max-width: 768px) {
-            .header h1 { font-size: 26px; }
-            .header-subtitle { font-size: 14px; }
-            th, td { font-size: 11px; padding: 10px 6px; }
-            .day { font-size: 12px; }
+        .lunch-cell {
+            background-color: var(--lunch-bg) !important;
+            color: #999999;
+            font-weight: 500;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-size: 11px;
+        }
+
+        .border-left-lab {
+            border-left: 3px solid var(--lab-border);
+        }
+
+        .border-right-lab {
+            border-right: 3px solid var(--lab-border);
+        }
+
+        /* Mobile specific enhancements */
+        @media screen and (max-width: 600px) {
+            body {
+                padding: 6px;
+            }
+            .main-header {
+                font-size: 14px;
+                padding: 10px;
+            }
+            th, td {
+                padding: 8px 4px;
+            }
         }
     </style>
-</head>
 
 <body>
 
-<div class="wrapper">
-
-    <div class="header">
-        <div class="header-label">W.E.F. 13.07.2026</div>
-        <h1>TIMETABLE</h1>
-        <div class="header-subtitle">B.E. with MBA III / L-4</div>
-        <div class="header-badge">Academic Year 2026-27</div>
-    </div>
-
-    <div class="panel">
-        <div class="table-wrap">
-            <table>
-
-                <thead>
-                    <tr>
-                        <th>Day</th>
-                        <th>08–09</th>
-                        <th>09–10</th>
-                        <th>10–11</th>
-                        <th>11–12</th>
-                        <th>12–01</th>
-                        <th>01–02</th>
-                        <th>02–03</th>
-                        <th>03–04</th>
-                        <th>04–05</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-
-                    <tr>
-                        <td class="day">Monday</td>
-                        <td>
-                            <span class="subject">Financial Accounting</span>
-                            <span class="faculty">Sher Singh</span>
-                        </td>
-                        <td>
-                            <span class="subject">Energy Technology</span>
-                            <span class="faculty">Girish</span>
-                        </td>
-                        <td>
-                            <span class="subject">Mass Transfer-I</span>
-                            <span class="faculty">Jaspreet</span>
-                        </td>
-                        <td>
-                            <span class="subject">Energy Technology</span>
-                            <span class="faculty">Girish</span>
-                        </td>
-                        <td class="tutorial">
-                            <span class="subject">Mass Transfer-I Tutorial</span>
-                            <span class="faculty">Jaspreet</span>
-                        </td>
-                        <td class="lunch">—</td>
-                        <td colspan="3" class="lab">
-                            <span class="subject">Numerical Method Computation Lab</span>
-                            <span class="faculty">Urvashi Gupta</span>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td class="day">Tuesday</td>
-                        <td>
-                            <span class="subject">Energy Technology</span>
-                            <span class="faculty">Girish</span>
-                        </td>
-                        <td>
-                            <span class="subject">Chem. Engg. Thermodynamics</span>
-                            <span class="faculty">Chemical Guest Faculty-1</span>
-                        </td>
-                        <td>
-                            <span class="subject">Mass Transfer-I</span>
-                            <span class="faculty">Jaspreet</span>
-                        </td>
-                        <td>
-                            <span class="subject">Numerical Methods of Chem. Engg.</span>
-                            <span class="faculty">Urvashi Gupta</span>
-                        </td>
-                        <td class="tutorial">
-                            <span class="subject">Numerical Methods Tutorial</span>
-                            <span class="faculty">Urvashi Gupta</span>
-                        </td>
-                        <td class="lunch">—</td>
-                        <td colspan="3" class="lab">
-                            <span class="subject">Process Plant Design-I</span>
-                            <span class="faculty">Sahil</span>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td class="day">Wednesday</td>
-                        <td class="free">—</td>
-                        <td>
-                            <span class="subject">Chem. Engg. Thermodynamics</span>
-                            <span class="faculty">Chemical Guest Faculty-1</span>
-                        </td>
-                        <td>
-                            <span class="subject">Financial Accounting</span>
-                            <span class="faculty">Sher Singh</span>
-                        </td>
-                        <td>
-                            <span class="subject">Business Analytics with R</span>
-                            <span class="faculty">Harjit Kaur</span>
-                        </td>
-                        <td>
-                            <span class="subject">Business Analytics with R</span>
-                            <span class="faculty">Harjit Kaur</span>
-                        </td>
-                        <td class="lunch">—</td>
-                        <td>
-                            <span class="subject">Petroleum Processing Engg.</span>
-                            <span class="faculty">Sonia Sharma</span>
-                        </td>
-                        <td>
-                            <span class="subject">Numerical Methods of Chem. Engg.</span>
-                            <span class="faculty">Urvashi Gupta</span>
-                        </td>
-                        <td>
-                            <span class="subject">Petroleum Processing Engg.</span>
-                            <span class="faculty">Sonia Sharma</span>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td class="day">Thursday</td>
-                        <td class="free">—</td>
-                        <td class="tutorial">
-                            <span class="subject">Chem. Engg. Thermo. Tutorial</span>
-                            <span class="faculty">Chemical Guest Faculty-1</span>
-                        </td>
-                        <td class="tutorial">
-                            <span class="subject">Petroleum Proc. Engg. Tutorial</span>
-                            <span class="faculty">Chemical Guest Faculty-1</span>
-                        </td>
-                        <td>
-                            <span class="subject">Business Analytics with R Tutorial</span>
-                            <span class="faculty">Harjit Kaur</span>
-                        </td>
-                        <td>
-                            <span class="subject">Petroleum Proc. Engg.</span>
-                            <span class="faculty">Sonia Sharma</span>
-                        </td>
-                        <td class="lunch">—</td>
-                        <td>
-                            <span class="subject">Financial Accounting</span>
-                            <span class="faculty">Sher Singh</span>
-                        </td>
-                        <td>
-                            <span class="subject">Financial Accounting</span>
-                            <span class="faculty">Sher Singh</span>
-                        </td>
-                        <td class="free">—</td>
-                    </tr>
-
-                    <tr>
-                        <td class="day">Friday</td>
-                        <td class="tutorial">
-                            <span class="subject">Energy Technology Tutorial</span>
-                            <span class="faculty">Girish</span>
-                        </td>
-                        <td>
-                            <span class="subject">Chem. Engg. Thermodynamics</span>
-                            <span class="faculty">Chemical Guest Faculty-1</span>
-                        </td>
-                        <td>
-                            <span class="subject">Mass Transfer-I</span>
-                            <span class="faculty">Jaspreet</span>
-                        </td>
-                        <td>
-                            <span class="subject">Business Analytics with R</span>
-                            <span class="faculty">Harjit Kaur</span>
-                        </td>
-                        <td>
-                            <span class="subject">Numerical Methods of Chem. Engg.</span>
-                            <span class="faculty">Urvashi Gupta</span>
-                        </td>
-                        <td class="lunch">—</td>
-                        <td colspan="3" class="lab">
-                            <span class="subject">Petroleum Processing Engg. Lab</span>
-                            <span class="faculty">Sonia Sharma</span>
-                        </td>
-                    </tr>
-
-                </tbody>
-            </table>
+    <div class="timetable-container">
+        <div class="main-header">
+            TIME TABLE | B.E.W MBA III/L2 (Updated)
         </div>
+        <table>
+            <thead>
+                <tr>
+                    <th class="time-header">TIME</th>
+                    <th>MONDAY</th>
+                    <th>TUESDAY</th>
+                    <th>WEDNESDAY</th>
+                    <th>THURSDAY</th>
+                    <th>FRIDAY</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- 8:00 AM - 9:00 AM -->
+                <tr>
+                    <td class="time-col">8:00 AM - 9:00 AM</td>
+                    <td>
+                        <div class="slot">
+                            <span class="subject">Financial Acc.</span>
+                            <span class="faculty">(Manoj)</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="slot">
+                            <span class="subject">Chem. Engg. Thermo</span>
+                            <span class="faculty">(NK)</span>
+                        </div>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <div class="slot">
+                            <span class="subject">Ener Tech. (T)</span>
+                            <span class="faculty">(Girish)</span>
+                        </div>
+                    </td>
+                </tr>
+
+                <!-- 9:00 AM - 10:00 AM -->
+                <tr>
+                    <td class="time-col">9:00 AM - 10:00 AM</td>
+                    <td>
+                        <div class="slot">
+                            <span class="subject">Energy Tech.</span>
+                            <span class="faculty">(Girish)</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="slot">
+                            <span class="subject">Chem. Engg. Thermo</span>
+                            <span class="faculty">(NK)</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="slot">
+                            <span class="subject">Energy Tech.</span>
+                            <span class="faculty">(Girish)</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="slot">
+                            <span class="subject">Chem. Engg. Thermo</span>
+                            <span class="faculty">(NK)</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="slot">
+                            <span class="subject">MT-I</span>
+                            <span class="faculty">(Jaspreet)</span>
+                        </div>
+                    </td>
+                </tr>
+
+                <!-- 10:00 AM - 11:00 AM -->
+                <tr>
+                    <td class="time-col">10:00 AM - 11:00 AM</td>
+                    <td>
+                        <div class="slot">
+                            <span class="subject">MT-I</span>
+                            <span class="faculty">(Jaspreet)</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="slot">
+                            <span class="subject">MT-I</span>
+                            <span class="faculty">(Jaspreet)</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="slot">
+                            <span class="subject">Financial Acc.</span>
+                            <span class="faculty">(Manoj)</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="slot">
+                            <span class="subject">Business Analytical R (T)</span>
+                            <span class="faculty">Computer Lab (HK)</span>
+                        </div>
+                    </td>
+                    <td class="border-left-lab border-right-lab">
+                        <div class="slot">
+                            <span class="subject">Petroleum Process Lab</span>
+                            <span class="faculty">(SS, Manoj)</span>
+                        </div>
+                    </td>
+                </tr>
+
+                <!-- 11:00 AM - 12:00 PM -->
+                <tr>
+                    <td class="time-col">11:00 AM - 12:00 PM</td>
+                    <td>
+                        <div class="slot">
+                            <span class="subject">Energy Tech.</span>
+                            <span class="faculty">(Girish)</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="slot">
+                            <span class="subject">NMCE</span>
+                            <span class="faculty">(UG)</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="slot">
+                            <span class="subject">Business Analytical R</span>
+                            <span class="faculty">Computer Lab (HK)</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="slot">
+                            <span class="subject">Business Analytical R</span>
+                            <span class="faculty">Computer Lab (HK)</span>
+                        </div>
+                    </td>
+                    <td class="border-left-lab border-right-lab">
+                        <div class="slot">
+                            <span class="subject">Petroleum Process Lab</span>
+                            <span class="faculty">(SS, Manoj)</span>
+                        </div>
+                    </td>
+                </tr>
+
+                <!-- 12:00 PM - 1:00 PM -->
+                <tr>
+                    <td class="time-col">12:00 PM - 1:00 PM</td>
+                    <td>
+                        <div class="slot">
+                            <span class="subject">MT-I (T)</span>
+                            <span class="faculty">(Jaspreet)</span>
+                        </div>
+                    </td>
+                    <td>
+                <!-- 12:00 PM - 1:00 PM -->
+                <tr>
+                    <td class="time-col">12:00 PM - 1:00 PM</td>
+                    <td>
+                        <div class="slot">
+                            <span class="subject">MT-I (T)</span>
+                            <span class="faculty">(Jaspreet)</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="slot">
+                            <span class="subject">NMCE (T)</span>
+                            <span class="faculty">(UG)</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="slot">
+                            <span class="subject">Business Analytical R</span>
+                            <span class="faculty">Computer Lab (HK)</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="slot">
+                            <span class="subject">NMCE</span>
+                            <span class="faculty">(UG)</span>
+                        </div>
+                    </td>
+                    <td class="border-left-lab border-right-lab">
+                        <div class="slot">
+                            <span class="subject">Petroleum Process Lab</span>
+                            <span class="faculty">(SS, Manoj)</span>
+                        </div>
+                    </td>
+                </tr>
+
+                <!-- Lunch Break -->
+                <tr class="lunch-row">
+                    <td class="time-col">1:00 PM - 2:00 PM</td>
+                    <td colspan="5" class="lunch-cell">Lunch Break</td>
+                </tr>
+
+                <!-- 2:00 PM - 3:00 PM -->
+                <tr>
+                    <td class="time-col">2:00 PM - 3:00 PM</td>
+                    <td class="border-left-lab border-right-lab">
+                        <div class="slot">
+                            <span class="subject">NMCE (Lab)</span>
+                            <span class="faculty">(UG)</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="slot">
+                            <span class="subject">PPD-1</span>
+                            <span class="faculty">(Sahil, Naresh S)</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="slot">
+                            <span class="subject">PPE</span>
+                            <span class="faculty">(SS)</span>
+                        </div>
+                    </td>
+                    <td></td>
+                    <td>
+                        <div class="slot">
+                            <span class="subject">Financial Acc.</span>
+                            <span class="faculty">(Naresh S)</span>
+                        </div>
+                    </td>
+                </tr>
+
+                <!-- 3:00 PM - 4:00 PM -->
+                <tr>
+                    <td class="time-col">3:00 PM - 4:00 PM</td>
+                    <td class="border-left-lab border-right-lab">
+                        <div class="slot">
+                            <span class="subject">NMCE (Lab)</span>
+                            <span class="faculty">(UG)</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="slot">
+                            <span class="subject">PPD-1</span>
+                            <span class="faculty">(Sahil, Naresh S)</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="slot">
+                            <span class="subject">NMCE</span>
+                            <span class="faculty">(UG)</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="slot">
+                            <span class="subject">PPE</span>
+                            <span class="faculty">(SS)</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="slot">
+                            <span class="subject">Financial Acc.</span>
+                            <span class="faculty">(Naresh S)</span>
+                        </div>
+                    </td>
+                </tr>
+
+                <!-- 4:00 PM - 5:00 PM -->
+                <tr>
+                    <td class="time-col">4:00 PM - 5:00 PM</td>
+                    <td class="border-left-lab border-right-lab">
+                        <div class="slot">
+                            <span class="subject">NMCE (Lab)</span>
+                            <span class="faculty">(UG)</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="slot">
+                            <span class="subject">PPD-1</span>
+                            <span class="faculty">(Sahil, Naresh S)</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="slot">
+                            <span class="subject">PPE</span>
+                            <span class="faculty">(SS)</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="slot">
+                            <span class="subject">PPE (T)</span>
+                            <span class="faculty">(Manoj)</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="slot">
+                            <span class="subject">Chem. Engg Th</span>
+                            <span class="faculty">(NK)</span>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-
-    <div class="faculty-key">
-        <h2>Faculty Directory</h2>
-        <div class="faculty-grid">
-            <div class="faculty-item">
-                <span class="faculty-name">Sher Singh</span>
-                <span class="faculty-subject">Financial Accounting</span>
-            </div>
-            <div class="faculty-item">
-                <span class="faculty-name">Girish</span>
-                <span class="faculty-subject">Energy Technology</span>
-            </div>
-            <div class="faculty-item">
-                <span class="faculty-name">Jaspreet</span>
-                <span class="faculty-subject">Mass Transfer-I</span>
-            </div>
-            <div class="faculty-item">
-                <span class="faculty-name">Chemical Guest Faculty-1</span>
-                <span class="faculty-subject">Chem. Engg. Thermodynamics / PPE Tutorial</span>
-            </div>
-            <div class="faculty-item">
-                <span class="faculty-name">Urvashi Gupta</span>
-                <span class="faculty-subject">Numerical Methods / Computation Lab</span>
-            </div>
-            <div class="faculty-item">
-                <span class="faculty-name">Harjit Kaur</span>
-                <span class="faculty-subject">Business Analytics with R</span>
-            </div>
-            <div class="faculty-item">
-                <span class="faculty-name">Sahil</span>
-                <span class="faculty-subject">Process Plant Design-I</span>
-            </div>
-            <div class="faculty-item">
-                <span class="faculty-name">Sonia Sharma</span>
-                <span class="faculty-subject">Petroleum Processing Engineering</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="footer">
-        B.E. with MBA III / L-4 | W.E.F. 13.07.2026 | Academic Year 2026-27
-    </div>
-
-</div>
-
-<script>
-    const today = new Date().toLocaleString('en-us', { weekday: 'long' });
-    document.querySelectorAll('.day').forEach(d => {
-        if (d.innerText === today) {
-            d.style.boxShadow = "inset 6px 0 0 #ef4444";
-            d.style.color = "#fde047";
-        }
-    });
-</script>
 
 </body>
 </html>
